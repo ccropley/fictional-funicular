@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Talk Like Yoda</title>
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous">
+        </script>
+        <script>window.onload = function()
+            {
+               $('#btnTranslate').on('click', translateText); 
+            }
+            function translateText()
+            {
+                var textToTranslate = $("#textToTranslate").val();
+                var url = "https://yoda.p.mashape.com/yoda?sentence=" + textToTranslate;
+                
+                $.ajax({url: url,
+                       headers: {"X-Mashape-Key": "csZrfHaJhVmsh2PyEXDeHSMmUs5bp1BmX19jsnP7t7XWzrYteI"},success: function(result){
+                                $("#result").html(result);
+                               }});
+            }
+        </script>
+        <style>
+            h1 {
+                font-family: Arial;
+            }
+            textarea {
+                width: 400px;
+                height: 100px;
+                background-color: #eeeeee;
+            }
+            label {
+                font-family: Arial, Verdana, sans-serif;                        
+            }
+            button {
+                width: 400px;
+                background-color: bisque;
+                font-weight: bold;
+            }
+            #translator
+            {
+                border: 1px solid black;
+                padding: 10px;
+                background-color: #00aa00;
+                width: 420px;  
+            }
+            #result
+            {
+                margin-top: 20px;
+                border: 1px solid black;
+                background-color: white;
+                height: 50px;
+            }
+            
+        </style>
+    </head>
+    
+        <body>
+            <h1>Talk Like Yoda App...</h1>
+            <div id= "translator">
+                <label for "textToTranslate">Text to
+                Translate</label><br/>
+                    <textarea id = "textToTranslate"></textarea>
+                </br>
+                <button id="btnTranslate">Translate Text to Yoda Speak</button>
+                <div id= "result"></div>
+            </div>
+        </body>
+
+</html>
